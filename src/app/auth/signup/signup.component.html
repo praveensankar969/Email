@@ -26,6 +26,36 @@
         <p *ngIf="authForm.errors.matchPassword">Password doesn't match</p>
     </div>
     <div class="field">
-        <button class="ui button submit primary">Submit</button>
+        <button class="ui button submit primary"(click) = "onSubmit()">Submit</button>
+    </div>
+</form>
+<form class="ui form" [formGroup]="authForm">
+
+    <div class="field">
+        <label> Username: </label>
+        <input formControlName="username">
+    </div>
+    <div *ngIf="authForm.get('username').errors && authForm.get('username').touched && authForm.get('username').dirty" class="ui pointing label basic red">
+        <p >Required or Username taken</p>
+    </div>
+    <div class="field">
+        <label> Password: </label>  
+        <input type = "password" formControlName="password">
+        <div *ngIf="authForm.get('password').errors && authForm.get('password').touched && authForm.get('password').dirty" class="ui pointing label basic red">
+            <p >Required</p>
+        </div>
+    </div>
+    <div class="field">
+        <label> Password Confirmation: </label>
+        <input type = "password" formControlName="passwordConfirm">
+        <div *ngIf="authForm.get('passwordConfirm').errors && authForm.get('passwordConfirm').touched && authForm.get('passwordConfirm').dirty" class="ui pointing label basic red">
+            <p >Required</p>
+        </div>
+    </div>
+    <div *ngIf="authForm.errors && authForm.get('passwordConfirm').touched && authForm.get('password').touched" class="ui red basic label">
+        <p *ngIf="authForm.errors.matchPassword">Password doesn't match</p>
+    </div>
+    <div class="field">
+        <button class="ui button submit primary"(click) = "onSubmit()">Submit</button>
     </div>
 </form>
